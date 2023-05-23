@@ -1,0 +1,31 @@
+.hero {
+  padding: 20px 0;
+  flex-grow: 1;
+}
+
+.hero__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero__title {
+  margin-bottom: 24px;
+  font-family: 'Aclonica';
+  font-weight: 400;
+  font-size: 312px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+
+.hero__description {
+  max-width: 940px;
+  margin-bottom: 135px;
+  font-size: 46px;
+  text-align: center;
+}
+
+.hero__steps {
+
+}
