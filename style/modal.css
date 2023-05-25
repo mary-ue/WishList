@@ -1,0 +1,18 @@
+.modal {
+  padding: 20px;
+  display: flex;
+  position: fixed;
+  z-index: 999;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  overflow-y: auto;
+}
+
+.modal__main {
+  margin: auto;
+  position: relative;
+  cursor: default;
+  color: #282828;
+  background-color: #fff;
+}
