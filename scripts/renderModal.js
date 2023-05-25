@@ -60,7 +60,7 @@ export const renderModal = ({title, description, btnSubmit, submitHandler}) => {
     });
 
     const modalSubmitBtn = createElement('button', {
-      className: 'modal__btn', 
+      className: 'modal__btn btn', 
       textContent: btnSubmit, 
     });
 

@@ -24,7 +24,7 @@ const handleUserRoute = async (login) => {
   app.append(await createWishlist(login));
 }
 
-createWishlist()
+// createWishlist()
 
 //  Вызвать загрузку главной страницы
 const handleHomePage = () => {
