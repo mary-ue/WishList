@@ -1,7 +1,7 @@
 import { renderNavigation } from "./renderNavigation.js";
 import { createHero } from "./createHero.js";
 import { createWishlist } from "./createWishlist.js";
-import { getLogin } from "./getLogin.js";
+import { getLogin } from "./service.js";
 import { JWT_TOKEN_KEY } from "./const.js";
 
 export const router = Router();
