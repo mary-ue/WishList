@@ -1,6 +1,7 @@
 import { renderNavigation } from "./renderNavigation.js";
 import { createHero } from "./createHero.js";
 import { createWishlist } from "./createWishlist.js";
+import { createEditProfile } from "./createEditProfile.js";
 import { getLogin } from "./service.js";
 import { JWT_TOKEN_KEY } from "./const.js";
 
@@ -14,17 +15,25 @@ const handleEditPageRoute = (id) => {
 
 }
 
-const handleEditProfileRoute = (login) => {
-
+const handleEditProfileRoute = async (login) => {
+  app.textContent = '';
+  const {sectionEditProfile, formProfile} = await createEditProfile(login);
+  renderNavigation('profile', formProfile);
+  app.append(sectionEditProfile);
 }
 
 const handleUserRoute = async (login) => {
-  app.textContent = ''; 
+  const wishlistSection = await createWishlist(login);
+  app.textContent = '';
   renderNavigation();
-  app.append(await createWishlist(login));
-}
 
-// createWishlist()
+  if (!app.contains(wishlistSection)) {
+    app.append(wishlistSection);
+  }
+  // app.textContent = ''; 
+  // renderNavigation();
+  // app.append(await createWishlist(login));
+}
 
 //  Вызвать загрузку главной страницы
 const handleHomePage = () => {

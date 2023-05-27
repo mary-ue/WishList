@@ -17,6 +17,11 @@
   gap: 50px 40px;
 }
 
+.wishlist__no-wish {
+  text-align: center;
+  font-size: 50px;
+}
+
 @media (max-width: 1700px) {
   .wishlist__items {
     gap: 40px 30px;
@@ -63,6 +68,10 @@
     grid-template-columns: 1fr;
     gap: 34px;
   }
+
+  .wishlist__no-wish {
+    font-size: 40px;
+  }
 }
 
 @media (max-width: 740px) {
@@ -84,5 +93,9 @@
 
   .wishlist__items {
     gap: 20px;
+  }
+
+  .wishlist__no-wish {
+    font-size: 30px;
   }
 }

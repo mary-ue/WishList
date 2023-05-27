@@ -115,7 +115,7 @@
       </div>
     </section>
 
-    <section class="edit edit_profile">
+    <section class="edit edit_profile">  
       <div class="container">
         <form class="edit__form">
           <fieldset class="edit__avatar">
@@ -127,7 +127,7 @@
                 </svg>
                 Обновить фотографию
               </label>
-              <input class="edit__input-file edit__input-file_avatar" type="file" accept="image/jpeg, image/png, image/jpg">
+              <input class="edit__input-file edit__input-file_avatar" type="file" accept="image/jpeg, image/png">
               <button class="edit__avatar-delete">
                 <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M9.48842 29.6389C9.48842 31.35 10.9027 32.75 12.6313 32.75H25.2027C26.9313 32.75 28.3456 31.35 28.3456 29.6389V10.9722H9.48842V29.6389ZM12.6313 14.0833H25.2027V29.6389H12.6313V14.0833ZM24.417 6.30556L22.8456 4.75H14.9884L13.417 6.30556H7.91699V9.41667H29.917V6.30556H24.417Z" fill="white"/>
@@ -154,24 +154,26 @@
             <legend class="edit__label-text">
               Дата рождения:
             </legend>
-            <label class="edit__label edit__label_select">
-              <select class="edit__select" type="select" name="day">
-                <option value="1">Te</option>
-                <option value="2">Tw</option>
-              </select>
-            </label>
-            <label class="edit__label edit__label_select">
-              <select class="edit__select" type="select" name="month">
-                <option value="1">Test</option>
-                <option value="2">Two</option>
-              </select>
-            </label>
-            <label class="edit__label edit__label_select">
-              <select class="edit__select" type="select" name="year">
-                <option value="1">Test</option>
-                <option value="2">Two</option>
-              </select>
-            </label>
+            <div class="edit__birthday-wrapper">
+              <label class="edit__label edit__label_select">
+                <select class="edit__select" type="select" name="day">
+                  <option value="1">Te</option>
+                  <option value="2">Tw</option>
+                </select>
+              </label>
+              <label class="edit__label edit__label_select">
+                <select class="edit__select" type="select" name="month">
+                  <option value="1">Test</option>
+                  <option value="2">Two</option>
+                </select>
+              </label>
+              <label class="edit__label edit__label_select">
+                <select class="edit__select" type="select" name="year">
+                  <option value="1">Test</option>
+                  <option value="2">Two</option>
+                </select>
+              </label>
+            </div>
           </fieldset>
           <fieldset class="edit__description">
             <label class="edit__label-text" for="description">Вступительный текст:</label>
@@ -215,7 +217,7 @@
           <fieldset class="edit__wish-photo">
             <label class="edit__label-photo">
               <img class="edit__wish-image" src="img/no-photo.jpg" alt="">
-              <input class="edit__input-file edit__input-file_wish" type="file" accept="image/jpeg, image/png, image/jpg">
+              <input class="edit__input-file edit__input-file_wish" type="file" accept="image/jpeg, image/png">
             </label>
             <button class="edit__wish-delete">
               <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">

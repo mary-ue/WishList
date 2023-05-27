@@ -75,6 +75,11 @@
   gap: 12px;
 }
 
+.edit__birthday-wrapper {
+  display: flex;
+  gap: 12px;
+}
+
 .edit__label_select {
   position: relative;
 }

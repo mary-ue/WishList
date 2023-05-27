@@ -2,7 +2,7 @@ import { createElement, pluralizeYears } from "./helper.js";
 import { auth } from "./index.js";
 import { getUser } from "./service.js";
 
-export const createWishlist = async (pageLogin) => {
+export const createWishlist = async pageLogin => {
   const login = auth.login;
 
   if (!pageLogin) {
@@ -17,7 +17,7 @@ export const createWishlist = async (pageLogin) => {
   });
 
   const container = createElement('div', {
-    className: 'container'
+    className: 'container',
   });
 
   section.append(container);
@@ -54,7 +54,7 @@ export const createWishlist = async (pageLogin) => {
     const age =  Math.abs(ageDate.getUTCFullYear() - 1970);
     const plural = pluralizeYears(age);
 
-    const ageMessage = `${age} ${month} исполнится ${age} ${plural}`
+    const ageMessage = `${day} ${month} исполнится ${age} ${plural}`
 
     const birthdayElem = createElement('p', {
       className: 'profile__birthday', 
