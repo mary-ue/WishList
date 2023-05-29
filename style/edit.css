@@ -6,6 +6,7 @@
   margin-bottom: 113px;
   display: flex;
   align-items: center;
+  /* gap: 107px; */
 }
 
 .edit__avatar-img {
@@ -196,6 +197,7 @@
 @media (max-width: 1200px) {
   .edit__avatar {
     margin-bottom: 56px;
+    /* gap: 34px; */
   }
 
   .edit__avatar-img {
@@ -210,7 +212,7 @@
     margin-bottom: 30px;
   }
 
-  .edit__birthdate {
+  .edit__birthday {
     margin-bottom: 40px;
   }
 
@@ -242,6 +244,7 @@
 
   .edit__avatar {
     margin-bottom: 64px;
+    gap: 20px;
   }
 
   .edit__avatar-img {
@@ -271,7 +274,7 @@
     margin-bottom: 44px;
   }
 
-  .edit__birthdate {
+  .edit__birthday {
     margin-bottom: 44px;
   }
 
@@ -350,7 +353,7 @@
     margin-bottom: 24px;
   }
 
-  .edit__birthdate {
+  .edit__birthday {
     margin-bottom: 24px;
   }
 

@@ -1,10 +1,12 @@
-import { ROUTE_NEW_WISH } from "./const.js";
+import { API_URL, ROUTE_NEW_WISH } from "./const.js";
 import { createElement, createOptionsCurrency, handleImageFileSelection } from "./helper.js"
+import { sendDataWish } from "./service.js";
+import { updateDataWish, getWish, deleteWish } from "./service.js";
 
 export const createEditWish = async (id) => {
-  if (id === ROUTE_NEW_WISH) {
-    // ! todo create new wish
-  }
+  
+  const wishData = id !== ROUTE_NEW_WISH && (await getWish(id));
+  console.log('getWish:', wishData)
 
   const sectionEditWish = createElement('section', {
     className: 'edit edit_wish',
@@ -17,6 +19,20 @@ export const createEditWish = async (id) => {
   const formWish = createElement('form', {
     className: 'edit__form',
   });
+
+  formWish.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData);
+
+    if (!wishData) {
+      await sendDataWish(data);
+    } else {
+      await updateDataWish(id, data);
+    }
+
+    history.back();
+  })
 
   const editWish = createElement('fieldset', {
     className: 'edit__wish',
@@ -35,6 +51,7 @@ export const createEditWish = async (id) => {
     className: 'edit__input', 
     name: 'title',
     type: 'text',
+    value: wishData.title ?? '',
   });
 
   labelTitle.append(labelTextTitle, InputTitle);
@@ -52,6 +69,7 @@ export const createEditWish = async (id) => {
     className: 'edit__input', 
     name: 'category',
     type: 'text',
+    value: wishData.category ?? '',
   });
 
   labelCategory.append(labelTextCategory, InputCategory);
@@ -73,6 +91,7 @@ export const createEditWish = async (id) => {
     className: 'edit__input', 
     name: 'price',
     type: 'number',
+    value: wishData.price ?? '',
   });
 
   labelPrice.append(labelTextPrice, InputPrice);
@@ -86,7 +105,7 @@ export const createEditWish = async (id) => {
     name: 'currency', 
   });
   
-  createOptionsCurrency(selectCurrency);
+  createOptionsCurrency(selectCurrency, wishData.currency);
   
   labelCurrency.append(selectCurrency);
   priceWrapper.append(labelPrice, labelCurrency);
@@ -104,6 +123,7 @@ export const createEditWish = async (id) => {
     className: 'edit__input', 
     name: 'link',
     type: 'text',
+    value: wishData.link ?? '',
   });
 
   labelLink.append(labelTextLink, InputLink);
@@ -120,8 +140,9 @@ export const createEditWish = async (id) => {
 
   const photo = createElement('img', {
     className: 'edit__wish-image', 
-    src: 'img/no-photo.jpg',
+    src: wishData.image ? `${API_URL}/${wishData.image}` : 'img/no-photo.jpg',
     alt: 'Фото желания',
+
   });
 
   const inputPhoto = createElement('input', {
@@ -141,11 +162,24 @@ export const createEditWish = async (id) => {
       </svg> 
     `,
     type: 'button',
+    style: photo.src.includes(API_URL) && !photo.src.includes('empty') || 'display: none;'  /* Крестик скрываем, если нет прервью фото */ 
+  });
+
+  btnPhotoDelete.addEventListener('click', () => {
+    photo.src = 'img/no-photo.jpg';
+    editHiddenInput.value = '';
+    inputPhoto.value = '',
+    btnPhotoDelete.style.display = 'none'; 
   });
 
   const editHiddenInput = createElement('input', {
     type: 'hidden', 
-    name: 'img',
+    name: 'image',
+    value: wishData.image ? `${API_URL}/${wishData.image}` : '',
+  });
+
+  inputPhoto.addEventListener('change', () => {
+    btnPhotoDelete.style.display = 'block';      /* При изменении фото показываем крестик */        
   });
 
   handleImageFileSelection(inputPhoto, photo, editHiddenInput);
@@ -166,6 +200,12 @@ export const createEditWish = async (id) => {
     className: 'edit__delete-btn btn', 
     textContent: 'Удалить желание',
     type: 'button',
+  });
+
+  btnDeleteWish.addEventListener('click', async () => {
+    await deleteWish(id);
+    history.back();
+    
   });
 
   editSubmitWrapper.append(btnSaveWish, btnDeleteWish);

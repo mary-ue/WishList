@@ -1,5 +1,5 @@
 import { createElement, pluralizeYears } from "./helper.js";
-import { auth } from "./index.js";
+import { auth, router } from "./index.js";
 import { getUser } from "./service.js";
 import { API_URL } from "./const.js";
 
@@ -12,6 +12,11 @@ export const createWishlist = async pageLogin => {
 
   const user = await getUser(pageLogin);
   // console.log('user:', user)
+
+  if (!user.login) {
+    router.setRoute('/');
+    return;
+  }
 
   const section = createElement('section', {
     className: 'wishlist',
@@ -128,28 +133,45 @@ export const createWishlist = async pageLogin => {
         className: 'wishlist__items',
       });
 
-      categoriesItem.append(categoriesTitle, wishlist);
+
 
       for (const item of user.wish[title]) {
         const itemElem = createElement('li', {
           className: 'item',
         });
 
+        if (itemElem) {
+          categoriesItem.append(categoriesTitle);
+        }
+
         const itemImg = createElement('img', {
           className: 'item__img', 
-          src: `${API_URL}/${item.img}`,
+          src: `${API_URL}/${item.image}`,
           alt: item.title,
         });
 
         const itemTitle = createElement('h4', {
           className: 'item__title',
-          textContent: item.title,
         });
+
+        if(item.link) {
+          const itemLink = createElement('a', {
+            className: 'item__link',
+            href: item.link, 
+            textContent: item.title,
+            target: '_blank',
+          });
+          itemTitle.append(itemLink);
+        } else {
+          itemTitle.textContent = item.title;
+        }
 
         const itemPrice = createElement('p', {
           className: 'item__price', 
-          textContent: `${item.price} ${item.currency}`,
+          textContent: item.price && `${item.price} ${item.currency}`,
         });
+
+        categoriesItem.append( wishlist);
 
         itemElem.append(itemImg, itemTitle, itemPrice);
 
